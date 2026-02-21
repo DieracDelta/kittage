@@ -126,13 +126,13 @@ impl Action<'_, '_> {
 					placement_id,
 					config
 				} => {
-					write!(writer, "p,i={image_id},p={placement_id}")?;
+					write!(writer, "p,i={image_id},p={placement_id},q={}", verbosity as u8)?;
 					writer = config.write_to(writer)?;
 					write!(writer, "\x1b\\")?;
 					writer
 				}
 				Action::Delete(del) => {
-					write!(writer, "d")?;
+					write!(writer, "d,q={}", verbosity as u8)?;
 					del.write_to(writer)?
 				}
 			};
